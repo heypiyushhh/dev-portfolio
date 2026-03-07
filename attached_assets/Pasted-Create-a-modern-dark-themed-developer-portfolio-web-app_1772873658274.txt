@@ -1,0 +1,257 @@
+Create a modern dark-themed **developer portfolio web application using React and Tailwind CSS** with a professional freelancer landing page design and an admin dashboard.
+
+Design Requirements:
+
+* Minimal modern dark UI with smooth gradients and soft shadows
+* Main background color: #2F3142
+* Secondary background: #252836
+* Card background: #3A3D4F
+* Accent color: #F4B400 (yellow highlight)
+* Text colors: white (#FFFFFF) and light gray (#C7C9D3)
+
+Use modern fonts such as **Poppins or Inter** and ensure the layout is fully responsive for desktop, tablet, and mobile devices.
+
+---
+
+MAIN PORTFOLIO WEBSITE
+
+1. Navbar
+
+* Left: logo and developer name (Piyush Kumar)
+* Center navigation links:
+  Home
+  About
+  Skills
+  Portfolio
+  Testimonials
+  Contact
+* Right: social icons and mobile menu icon
+* Transparent navbar with yellow underline hover animation
+
+---
+
+2. Hero Section
+
+Layout:
+Left:
+Large heading introduction:
+"I'm Piyush Kumar – Full Stack Developer"
+
+Short professional description about building modern web applications and digital solutions.
+
+Add yellow underline highlight under the name.
+
+Center:
+Large circular developer profile image with blurred abstract background shape.
+
+Right:
+Short service description with text:
+"Let's build quality products in programming and design."
+
+Include:
+Show More → link
+Social media icons
+
+---
+
+3. Companies Section
+
+Create a horizontal card container displaying company style logos such as:
+Meta
+Google
+LinkedIn
+Slack
+
+Use:
+Rounded card
+Dark background
+Soft shadow
+Equal spacing
+
+---
+
+4. Services Section
+
+Left side:
+Heading:
+"What Can I Do For Your Needs"
+
+Statistics grid:
+250+ Projects Completed
+100+ Clients
+30+ Reviews
+10+ Years Experience
+
+Right side:
+Vertical service list cards:
+
+UI/UX Design – 117 Projects
+Front End Development – 84 Projects
+Mobile App Development – 32 Projects
+
+Each card should include:
+Small preview image
+Service title
+Project count
+Arrow icon
+
+---
+
+5. Skills Section
+
+Create a skills grid displaying technologies such as:
+
+React
+JavaScript
+HTML
+CSS
+Tailwind
+Node.js
+.NET
+SQL
+Git
+Bootstrap
+
+Each skill should be displayed in a small card with icon and hover animation.
+
+---
+
+6. Projects / Portfolio Section
+
+Create a project showcase grid with cards.
+
+Each project card should include:
+Project image
+Project title
+Technology stack
+Short description
+Buttons:
+Live Demo
+GitHub
+
+Example projects:
+Student Notes Portal
+Admin Dashboard System
+Task Management App
+Portfolio Website
+E-Commerce UI
+
+---
+
+7. Education Section
+
+Timeline style education section showing:
+
+Diploma in Computer Science and Engineering
+Government Polytechnic Mawanakhurd, Meerut
+2022 – 2025
+
+Include icons and timeline design with smooth animations.
+
+---
+
+8. Testimonials Section
+
+Client testimonial cards including:
+
+Client photo
+Name
+Company
+Review message
+
+Use carousel or slider animation.
+
+---
+
+9. Contact Section
+
+Simple contact form with fields:
+Name
+Email
+Message
+
+Add submit button and social media icons.
+
+---
+
+ADMIN PANEL (React Admin Dashboard)
+
+Create a separate admin dashboard accessible via login.
+
+Admin Login Page:
+Fields:
+Email
+Password
+Login button
+
+Add validation and modern UI design.
+
+---
+
+Admin Dashboard Layout:
+
+Left Sidebar Navigation:
+Dashboard
+Projects
+Skills
+Testimonials
+Messages
+Logout
+
+Top Navbar:
+Admin profile
+Notifications
+Search
+
+---
+
+Admin Dashboard Pages
+
+1. Dashboard Overview
+   Show statistics cards:
+   Total Projects
+   Total Skills
+   Messages Received
+   Visitors
+
+2. Manage Projects
+   Admin can:
+   Add project
+   Edit project
+   Delete project
+
+3. Manage Skills
+   Add skills
+   Edit skills
+   Delete skills
+
+4. Manage Testimonials
+   Add client testimonials
+   Edit testimonials
+   Delete testimonials
+
+5. Messages
+   Display contact form messages
+
+---
+
+Technology Stack
+
+Frontend:
+React
+Tailwind CSS
+React Router
+Framer Motion for animations
+
+Optional Backend:
+Node.js + Express or Firebase
+
+Ensure clean component structure:
+
+components/
+pages/
+admin/
+assets/
+styles/
+
+Use reusable components and modern UI animations.
