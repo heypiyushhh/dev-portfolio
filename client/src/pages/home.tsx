@@ -18,6 +18,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { insertMessageSchema } from "@shared/schema";
 
+
+
 // Fallback Data if backend is empty
 const MOCK_PROJECTS = [
   { id: 1, title: "FinTech Dashboard", description: "A comprehensive dashboard for managing cryptocurrency portfolios with real-time charts.", techStack: ["React", "TypeScript", "Tailwind"], imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" },
@@ -95,12 +97,16 @@ export default function Home() {
                 I craft high-performance, beautiful web applications. From complex backend architectures to pixel-perfect frontends, I bring ideas to life.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-md shadow-[0_0_20px_rgba(244,180,0,0.3)] hover:shadow-[0_0_30px_rgba(244,180,0,0.5)] transition-all">
+                <a href="#contact">
+                  <Button  size="lg"  className="rounded-full px-8 bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-md shadow-[0_0_20px_rgba(244,180,0,0.3)] hover:shadow-[0_0_30px_rgba(244,180,0,0.5)] transition-all">
                   Hire Me
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-8 font-semibold text-md border-border hover:bg-secondary">
+                </a>
+              <a href="#portfolio">
+                 <Button size="lg" variant="outline" className="rounded-full px-8 font-semibold text-md border-border hover:bg-secondary">
                   View Portfolio
                 </Button>
+              </a>
               </div>
             </motion.div>
 
@@ -114,7 +120,9 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-full animate-pulse"></div>
                 <div className="absolute inset-4 rounded-full border border-white/10 flex items-center justify-center overflow-hidden bg-secondary">
                   {/* hero profile picture developer coder */}
-                  <img src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=800&q=80" alt="Developer" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" />
+                  {/* <img src="https://images.unsplash.com/photo-1537511446984-935f663eb1f4?w=800&q=80" alt="Developer" className="w-full h-full object-cover opacity-80 mix-blend-luminosity" /> */}
+
+                  <img src="/image.png" alt="hero image" />
                 </div>
                 
                 {/* Floating Tech Badges */}

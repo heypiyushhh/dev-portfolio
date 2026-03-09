@@ -52,11 +52,14 @@ export function PublicLayout({ children }: { children: React.ReactNode }) {
               </a>
             ))}
             <div className="h-6 w-px bg-border mx-2"></div>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://github.com/heypiyushhh" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               <Github className="w-5 h-5" />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://www.linkedin.com/in/heypiyushhh/" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               <Linkedin className="w-5 h-5" />
+            </a>
+            <a href="https://x.com/HeyPiyushhh" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+              <Twitter className="w-5 h-5" />
             </a>
           </nav>
 
@@ -86,9 +89,9 @@ export function PublicLayout({ children }: { children: React.ReactNode }) {
             ))}
           </nav>
           <div className="mt-auto pb-12 flex space-x-6">
-            <a href="https://github.com" className="p-3 bg-secondary rounded-full text-foreground"><Github /></a>
-            <a href="https://linkedin.com" className="p-3 bg-secondary rounded-full text-foreground"><Linkedin /></a>
-            <a href="https://twitter.com" className="p-3 bg-secondary rounded-full text-foreground"><Twitter /></a>
+            <a href="https://github.com/heypiyushhh" className="p-3 bg-secondary rounded-full text-foreground"><Github /></a>
+            <a href="https://www.linkedin.com/in/heypiyushhh/" className="p-3 bg-secondary rounded-full text-foreground"><Linkedin /></a>
+            <a href="https://x.com/HeyPiyushhh" className="p-3 bg-secondary rounded-full text-foreground"><Twitter /></a>
           </div>
         </div>
       )}
@@ -102,8 +105,9 @@ export function PublicLayout({ children }: { children: React.ReactNode }) {
             Building digital products, brands, and experience. Let's work together to create something amazing.
           </p>
           <div className="flex justify-center space-x-6 mb-8">
-             <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Github /></a>
-             <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin /></a>
+             <a href="https://github.com/heypiyushhh" className="text-muted-foreground hover:text-primary transition-colors"><Github /></a>
+             <a href="https://www.linkedin.com/in/heypiyushhh/" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin /></a>
+             <a href="https://x.com/HeyPiyushhh" className="text-muted-foreground hover:text-primary transition-colors"><Twitter /></a>
           </div>
           <p className="text-sm text-muted-foreground/60">&copy; {new Date().getFullYear()} Piyush Kumar. All rights reserved.</p>
         </div>

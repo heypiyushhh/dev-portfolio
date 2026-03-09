@@ -1,11 +1,11 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
-import { 
-  LayoutDashboard, 
-  Briefcase, 
-  Code2, 
-  MessageSquare, 
-  Quote, 
+import {
+  LayoutDashboard,
+  Briefcase,
+  Code2,
+  MessageSquare,
+  Quote,
   LogOut,
   Loader2
 } from "lucide-react";
@@ -74,10 +74,10 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
                 </SidebarMenu>
               </SidebarGroupContent>
             </SidebarGroup>
-            
+
             <div className="mt-auto p-4 border-t border-border">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10"
                 onClick={() => logout()}
               >
