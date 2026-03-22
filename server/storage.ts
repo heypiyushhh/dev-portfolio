@@ -70,20 +70,34 @@ export class DatabaseStorage implements IStorage {
     const [project] = await db.select().from(projects).where(eq(projects.id, id));
     return project;
   }
-
   async createProject(project: InsertProject): Promise<Project> {
-    const [created] = await db.insert(projects).values(project).returning();
-    return created;
+  // Ensure techStack is always string[]
+  const safeProject: InsertProject = {
+    ...project,
+    techStack: Array.isArray(project.techStack)
+      ? project.techStack
+      : Object.values(project.techStack || {}).map(v => v + ""), // ✅ force string[]
   }
+
+  const [created] = await db.insert(projects).values(safeProject as InsertProject).returning();
+  return created;
+}
 
   async updateProject(id: number, update: UpdateProjectRequest): Promise<Project> {
+    const safeUpdate = {
+      ...update,
+      techStack: Array.isArray(update.techStack)
+        ? (update.techStack as string[])
+        : (Object.values(update.techStack || {}) as string[]), // ensure string[]
+    }
+
     const [updated] = await db.update(projects)
-      .set(update)
+      .set(safeUpdate)
       .where(eq(projects.id, id))
       .returning();
+
     return updated;
   }
-
   async deleteProject(id: number): Promise<void> {
     await db.delete(projects).where(eq(projects.id, id));
   }

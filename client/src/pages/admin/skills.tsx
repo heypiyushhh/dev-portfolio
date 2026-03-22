@@ -50,7 +50,11 @@ export default function AdminSkills() {
                   <FormItem><FormLabel>Skill Name</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>
                 )} />
                 <FormField control={form.control} name="category" render={({ field }) => (
-                  <FormItem><FormLabel>Category</FormLabel><FormControl><Input placeholder="Frontend, Backend, etc." {...field} /></FormControl><FormMessage /></FormItem>
+                  <FormItem><FormLabel>Category</FormLabel><FormControl><Input
+                    placeholder="Frontend, Backend, etc."
+                    {...field}
+                    value={field.value ?? ""}  // null ya undefined ko empty string se replace
+                  /></FormControl><FormMessage /></FormItem>
                 )} />
                 <FormField control={form.control} name="icon" render={({ field }) => (
                   <FormItem><FormLabel>Icon (Lucide name)</FormLabel><FormControl><Input placeholder="Code2" {...field} /></FormControl><FormMessage /></FormItem>
