@@ -13,11 +13,14 @@ export async function registerRoutes(
 ): Promise<Server> {
   // Setup session
   app.use(session({
-    secret: process.env.SESSION_SECRET || 'dev_secret',
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: process.env.NODE_ENV === "production" }
-  }));
+  secret: process.env.SESSION_SECRET || 'dev_secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === "production", // HTTPS pe true
+    sameSite: "none" // cross-site requests allow karne ke liye
+  }
+}));
 
   app.use(passport.initialize());
   app.use(passport.session());
