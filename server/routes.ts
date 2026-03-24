@@ -6,25 +6,34 @@ import { z } from "zod";
 import session from "express-session";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import cors from "cors";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Setup session
+  // ✅ CORS setup
+  app.use(cors({
+    origin: "https://dev-portfolio-eaoq.onrender.com",
+    credentials: true
+  }));
+
+  // ✅ Session setup
   app.use(session({
-  secret: process.env.SESSION_SECRET || 'dev_secret',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    secure: process.env.NODE_ENV === "production", // HTTPS pe true
-    sameSite: "none" // cross-site requests allow karne ke liye
-  }
-}));
+    secret: process.env.SESSION_SECRET || "dev_secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: process.env.NODE_ENV === "production", // HTTPS pe true
+      sameSite: "none", // cross-site requests allow karne ke liye
+      httpOnly: true    // JS se access block
+    }
+  }));
 
   app.use(passport.initialize());
   app.use(passport.session());
 
+  // ✅ Local strategy
   passport.use(new LocalStrategy({ usernameField: "email" }, async (email, password, done) => {
     try {
       const user = await storage.getUserByEmail(email);
@@ -50,21 +59,26 @@ export async function registerRoutes(
     }
   });
 
-  // Authentication Middleware
+  // ✅ Auth middleware
   const requireAuth = (req: any, res: any, next: any) => {
     if (req.isAuthenticated()) return next();
     res.status(401).json({ message: "Unauthorized" });
   };
 
-  // Auth routes
-  app.post(api.auth.login.path, passport.authenticate('local'), (req, res) => {
-    res.status(200).json(req.user);
+  // ✅ Auth routes
+  app.post(api.auth.login.path, passport.authenticate("local"), (req, res) => {
+    // Force session save so cookie is sent
+    req.session.save(() => {
+      res.status(200).json(req.user);
+    });
   });
 
   app.post(api.auth.logout.path, (req, res, next) => {
     req.logout((err) => {
       if (err) return next(err);
-      res.status(200).json({ success: true });
+      req.session.destroy(() => {
+        res.status(200).json({ success: true });
+      });
     });
   });
 
@@ -76,7 +90,7 @@ export async function registerRoutes(
     }
   });
 
-  // Projects
+  // ✅ Projects
   app.get(api.projects.list.path, async (req, res) => {
     const projects = await storage.getProjects();
     res.json(projects);
@@ -89,7 +103,7 @@ export async function registerRoutes(
       res.status(201).json(project);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -103,7 +117,7 @@ export async function registerRoutes(
       res.json(project);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -114,7 +128,7 @@ export async function registerRoutes(
     res.status(204).send();
   });
 
-  // Skills
+  // ✅ Skills
   app.get(api.skills.list.path, async (req, res) => {
     const skills = await storage.getSkills();
     res.json(skills);
@@ -127,7 +141,7 @@ export async function registerRoutes(
       res.status(201).json(skill);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -141,7 +155,7 @@ export async function registerRoutes(
       res.json(skill);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -152,7 +166,7 @@ export async function registerRoutes(
     res.status(204).send();
   });
 
-  // Testimonials
+  // ✅ Testimonials
   app.get(api.testimonials.list.path, async (req, res) => {
     const testimonials = await storage.getTestimonials();
     res.json(testimonials);
@@ -165,7 +179,7 @@ export async function registerRoutes(
       res.status(201).json(testimonial);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -179,7 +193,7 @@ export async function registerRoutes(
       res.json(testimonial);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -190,7 +204,7 @@ export async function registerRoutes(
     res.status(204).send();
   });
 
-  // Messages
+  // ✅ Messages
   app.get(api.messages.list.path, requireAuth, async (req, res) => {
     const messages = await storage.getMessages();
     res.json(messages);
@@ -203,7 +217,7 @@ export async function registerRoutes(
       res.status(201).json(message);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
@@ -217,7 +231,7 @@ export async function registerRoutes(
       res.json(message);
     } catch (err) {
       if (err instanceof z.ZodError) {
-        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join('.') });
+        return res.status(400).json({ message: err.errors[0].message, field: err.errors[0].path.join(".") });
       }
       throw err;
     }
