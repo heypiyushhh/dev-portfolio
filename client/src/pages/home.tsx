@@ -221,12 +221,16 @@ export default function Home() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                    <Button size="icon" variant="secondary" className="rounded-full w-12 h-12">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                      <Button size="icon" variant="secondary" className="rounded-full w-12 h-12">
                       <ExternalLink className="w-5 h-5" />
                     </Button>
+                    </a>
+                   <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                     <Button size="icon" variant="secondary" className="rounded-full w-12 h-12">
                       <Github className="w-5 h-5" />
                     </Button>
+                   </a>
                   </div>
                 </div>
                 <CardContent className="p-6">

@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, buildUrl } from "@shared/routes";
 import type { InsertProject, UpdateProjectRequest } from "@shared/schema";
+import { log } from "console";
 
 export function useProjects() {
   return useQuery({
@@ -9,8 +10,12 @@ export function useProjects() {
       const res = await fetch(api.projects.list.path, { credentials: "include" });
       if (!res.ok) throw new Error("Failed to fetch projects");
       return api.projects.list.responses[200].parse(await res.json());
+      console.log(res);
     },
+    
+    
   });
+  
 }
 
 export function useCreateProject() {
